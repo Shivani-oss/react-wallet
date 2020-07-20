@@ -37,6 +37,7 @@ import ToggleOnIcon from '@material-ui/icons/ToggleOn';
 
 
 
+
 const BootstrapInput = withStyles((theme) => ({
   root: {
     'label + &': {
@@ -239,7 +240,8 @@ const useStyles = makeStyles((theme) => ({
       marginTop:-1,
       color:'#f1c40f',
       marginLeft: 40
-    }
+    },
+
    
     
 
@@ -252,7 +254,12 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <Device />
+      return <>
+              <p>Follow the instruction on device</p>
+              <Device text="Select the wallet on Device" />
+              <Device text="Select the Coin on Device" />
+              <Device text="Tap 1 card of any 4 card" />
+            </>
     case 1:
       return <Verification />
     case 2:

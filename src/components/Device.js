@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
         color:"#fff",
     },
     icon: {
+      marginLeft:400,
     },
     toggleButton:{
         color:"#fff",
@@ -45,13 +46,22 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-export default function Device() {
+const Device = ({text}) => {
     const classes = useStyles();
+    const[Complete, setComplete] = React.useState(false)
+
+    const toggleComplete = () => {
+      if(Complete){
+        setComplete(false)
+      }
+      else{
+        setComplete(true)
+      }
+    }
 
 
     return (
         <>
-      <p className={classes.para}>Follow the instruction on device</p>
       <div className={classes.last}>
       <div className={classes.grid}>
       <Grid container spacing={5}>
@@ -61,40 +71,14 @@ export default function Device() {
         startIcon={<ArrowRightAltIcon/>}
         ></Button>
         </Grid>
-        <Grid item xs={11} >
-            <Typography className={classes.para}>{"Select the Wallet on device"}</Typography>
-        </Grid>
-        
-        
-      </Grid>
-    </div>
-    </div>
-    <div className={classes.last}>
-      <div className={classes.grid}>
-      <Grid container spacing={5}>
-        <Grid item xs={1}>
-        <Button
-        className={classes.button}
-        startIcon={<ArrowRightAltIcon/>}
-        ></Button>
-        </Grid>
-        <Grid item xs={10}>
-            <Typography className={classes.para}>{"Select the Coin on device"}</Typography>
-        </Grid>
-      </Grid>
-    </div>
-    </div>
-    <div className={classes.last}>
-      <div className={classes.grid}>
-      <Grid container spacing={5}>
-        <Grid item xs={1}>
-        <Button
-        className={classes.button}
-        startIcon={<ArrowRightAltIcon/>}
-        ></Button>
-        </Grid>
-        <Grid item xs={11}>
-            <Typography className={classes.para}>{"Tap 1 Card of any 4 card"}</Typography> 
+        <Grid item xs={11} onClick={toggleComplete} >
+            <Typography className={classes.para}>{text}</Typography>
+            {
+              Complete ?
+                  <DoneAllOutlinedIcon className={classes.icon}/>
+                  :
+                  null
+            }
         </Grid>
       </Grid>
     </div>
@@ -102,3 +86,5 @@ export default function Device() {
     </>
     )
 }
+
+export default Device

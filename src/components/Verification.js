@@ -3,7 +3,9 @@ import { makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt'
+import DoneAllOutlinedIcon from '@material-ui/icons/DoneAllOutlined'
+
 
 
 const useStyles = makeStyles((theme) => ({ 
@@ -54,11 +56,25 @@ const useStyles = makeStyles((theme) => ({
         color:"#fff",
         marginLeft:400,
     },
+    icon: {
+        marginLeft: 400,
+    },
 
 }))
 
 export default function Verification() {
-    const classes = useStyles();
+    const classes = useStyles()
+
+    const[Complete, setComplete] = React.useState(false)
+
+    const toggleComplete = () => {
+      if(Complete){
+        setComplete(false)
+      }
+      else{
+        setComplete(true)
+      }
+    }
     return (
         <div>
            <div className={classes.last}>
@@ -67,9 +83,9 @@ export default function Verification() {
                 <Grid  item xs={2}>
 
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={10}  >
                     <Typography className={classes.para1}>{"2547AFHTUEritgnctwwSW"}</Typography>
-                    
+                   
                </Grid>
             </Grid>
             </div>
@@ -77,15 +93,22 @@ export default function Verification() {
         <p className={classes.para}>Verify adress on device</p>
         <div className={classes.last1}>
         <div className={classes.grid}>
-        <Grid container spacing={7}>
+        <Grid container spacing={6}>
             <Grid item xs={1}>
             <Button
             className={classes.button}
             startIcon={<ArrowRightAltIcon/>}
             ></Button>
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={10} onClick={toggleComplete} >
                 <Typography className={classes.para}>{"Please match the adress to be shown in X1 Wallet"}</Typography>
+                {
+                        Complete ?
+                            <DoneAllOutlinedIcon className={classes.icon}/>
+                            :
+                            null
+                         
+                }
             </Grid>
             
         </Grid>
